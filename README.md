@@ -1,2 +1,8 @@
 # Glorious-DotFiles
-Dotfiles of my desktop configuration
+Dotfiles of my desktop environement configuration
+
+## Requirements
+- awesomewm
+- picom
+- kitty
+- neovim
