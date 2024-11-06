@@ -1,5 +1,14 @@
+if status is-interactive
+    # Commands to run in interactive sessions can go here
+end
 # /etc/skel/.bashrc
-[ -x /bin/fish ] && SHELL=/bin/fish exec fish
+
+function fish_prompt
+    set_color $fish_color_cwd
+    echo -n (prompt_pwd)
+    set_color normal
+    echo -n ' > '
+end
 
 alias v="nvim"
 alias awconf="nvim ~/.config/awesome/rc.lua"

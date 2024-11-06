@@ -169,7 +169,6 @@ awful.screen.connect_for_each_screen(function(s)
         s.mytasklist, -- Middle widget
         { -- Right widgets
             layout = wibox.layout.fixed.horizontal,
-            mykeyboardlayout,
             wibox.widget.systray(),
             mytextclock,
             s.mylayoutbox,
@@ -188,8 +187,18 @@ root.buttons(gears.table.join(
 
 -- {{{ Key bindings
 globalkeys = gears.table.join(
-    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
-              {description="show help", group="awesome"}),
+    -- Volume
+    awful.key({ }, "XF86AudioLowerVolume", function () 
+      awful.util.spawn("amixer -q sset Master 5%-") end),
+    awful.key({ }, "XF86AudioRaiseVolume", function () 
+      awful.util.spawn("amixer -q sset Master 5%+") end),
+    awful.key({ }, "XF86AudioNext",function () awful.util.spawn( "mpc next" ) end),
+    awful.key({ }, "XF86AudioPrev",function () awful.util.spawn( "mpc prev" ) end),
+    awful.key({ }, "XF86AudioPlay",function () awful.util.spawn( "mpc play" ) end),
+    awful.key({ }, "XF86AudioStop",function () awful.util.spawn( "mpc pause" ) end),
+    awful.key({ }, "XF86AudioMute",function () awful.util.spawn( "mpc mute" ) end),
+    
+    awful.key({ modkey,           }, "s",      hotkeys_popup.show_help, {description="show help", group="awesome"}),
     awful.key({ modkey,           }, "Left",   awful.tag.viewprev,
               {description = "view previous", group = "tag"}),
     awful.key({ modkey,           }, "Right",  awful.tag.viewnext,
@@ -453,8 +462,8 @@ awful.rules.rules = {
     },
 
     -- Set Firefox to always map on the tag named "2" on screen 1.
-    { rule = { class = "Firefox" },
-      properties = { screen = 1, tag = "2" } },
+    { rule = { class = "firefox-esr" },
+      properties = { screen = 2, tag = "Main" } },
 }
 -- }}}
 
@@ -503,9 +512,6 @@ client.connect_signal("request::titlebars", function(c)
         },
         { -- Right
             awful.titlebar.widget.floatingbutton (c),
-            awful.titlebar.widget.maximizedbutton(c),
-            awful.titlebar.widget.stickybutton   (c),
-            awful.titlebar.widget.ontopbutton    (c),
             awful.titlebar.widget.closebutton    (c),
             layout = wibox.layout.fixed.horizontal()
         },
