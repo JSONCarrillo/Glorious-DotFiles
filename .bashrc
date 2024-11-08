@@ -1,5 +1,4 @@
-# /etc/skel/.bashrc
-[ -x /bin/fish ] && SHELL=/bin/fish exec fish
+#!/bin/bash
 
 alias v="nvim"
 alias awconf="nvim ~/.config/awesome/rc.lua"
@@ -11,4 +10,4 @@ alias gita="git add ."
 alias gitc="git commit -m"
 alias gitpom="git push origin master"
 
-.scripts/welcome.sh
+~/.scripts/welcome.sh

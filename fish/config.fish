@@ -1,14 +1,13 @@
+#! /bin/fish
 if status is-interactive
     # Commands to run in interactive sessions can go here
 end
-# /etc/skel/.bashrc
 
 function fish_prompt
-    set_color $fish_color_cwd
-    echo -n (prompt_pwd)
-    set_color normal
-    echo -n ' > '
-end
+    echo (set_color "cyan")(whoami)(set_color "white")@(set_color "#C6A0F6")(hostname) (set_color "green")(prompt_pwd)
+
+    echo (set_color "red")" > "
+  end
 
 alias v="nvim"
 alias awconf="nvim ~/.config/awesome/rc.lua"
@@ -20,4 +19,4 @@ alias gita="git add ."
 alias gitc="git commit -m"
 alias gitpom="git push origin master"
 
-.scripts/welcome.sh
+~/.scripts/welcome.sh
