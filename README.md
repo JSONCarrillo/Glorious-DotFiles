@@ -6,3 +6,4 @@ Dotfiles of my desktop environement configuration
 - picom
 - kitty
 - neovim
+- fish
